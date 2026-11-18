@@ -1,6 +1,6 @@
 # Avvio dei container Docker (Alice, Bob e CA)
 
-Questa guida spiega come avviare l'ambiente Docker dell'homework e come entrare nei container per eseguire i comandi. I comandi OpenSSL veri e propri, da eseguire nell'ordine giusto, sono in [`guida_comandi_utilizzo.txt`](guida_comandi_utilizzo.txt).
+Questa guida spiega come avviare l'ambiente Docker dell'homework e come entrare nei container per eseguire i comandi. I comandi OpenSSL veri e propri, da eseguire nell'ordine giusto, sono in guida_comandi_utilizzo.md.
 
 ## Cosa fa l'ambiente
 
