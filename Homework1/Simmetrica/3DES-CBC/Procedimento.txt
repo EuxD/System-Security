@@ -1,0 +1,28 @@
+## 1. Generazione di chiave e IV
+openssl rand -hex 24 > 3des.key
+openssl rand -hex 8 > 3des.iv
+
+## 2. Cifratura con IV
+openssl enc -des-ede3-cbc -in plain.txt -out cipher_3des.bin -K $(cat 3des.key) -iv $(cat 3des.iv)
+
+## 3. Decifratura
+openssl enc -d -des-ede3-cbc –in cipher_3des.bin -K $(cat 3des.key) -iv $(cat 3des.iv) –out decrypted.txt
+
+## 4. Controllo se la decifratura è andata a buon fine
+diff plain.txt decrypted.txt && echo “OK, identici”
+
+-------------------------------------------------------------------------------------------------------------------------
+ECB vs CBC
+ECB ha come caratteristica che cifra ogni singolo blocco in maniera indipendete
+CBC mette in XOR primo blocco con IV e cifra. Il risultato passo in XOR con il secondo blocco e così via
+
+## Cifratura con ECB
+openssl enc -des-ede3-ecb -in ripetuto.txt -out des_ecb.bin -K $(cat 3des.key)
+xxd -d des_ecb.bin
+-> Se vado a cifrare il file ripetuto.txt con la modalità operative ECB noto che ogni blocco viene crittato allo stesso modo. Quindi chi osserva vede la struttura del messaggio e potrebbe andare a risolvere il messaggio. Non ho bisogno di IV
+
+## Cifratura con CBC
+openssl enc -des-ede3-cbc -in ripetuto.txt -out x.bin -K $(cat 3des.key) -iv $(cat 3des.iv)
+xxd -d x.bin
+
+-> In CBC ogni blocco viene messo in XOR con il blocco cifrato precedente prima di cifrarlo, quindi blocchi uguali producono uscite diverse. Il primo blocco non avendo un blocco precedente, viene cifrato a partire dall’IV

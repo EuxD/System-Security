@@ -1,0 +1,13 @@
+Crittato file msg.txt con algoritmo 3DES con chiave corta, quindi mi trovo nella situazione in cui K2=K3
+prova a decrittare con DES semplice e il risultato è decrypted.txt
+
+$ openssl rand -hex 8 > 3des.iv
+
+# cifratura e decifratura
+$ openssl enc -des-ede3-cbc -in msg.txt
+    -out 3des_chiave_corta.bin -K 0123456789 -iv $(cat 3des.iv)
+
+$ openssl enc -d -des-cbc –in 3des_chiave_corta.bin -K 0123456789
+	-iv $(cat 3des.iv) –out decrypted.txt –provider legacy –provider default
+
+$ diff msg.txt decrypted.txt && echo “I file sono identici”

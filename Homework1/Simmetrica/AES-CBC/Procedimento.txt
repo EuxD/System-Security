@@ -1,0 +1,14 @@
+# chiave (32 byte) e IV (16 byte)
+$ openssl rand -hex 32 > aes256.key
+$ openssl rand -hex 16 > aes256.iv
+
+# cifratura e decifratura
+$ openssl enc -aes-256-cbc -in msg.txt
+    -out cipher_aes.bin -K $(cat aes256.key) -iv $(cat aes256.iv)
+
+$ openssl enc -d -aes-256-cbc -in cipher_aes.bin –K $(cat aes256.key) 
+	-iv $(cat aes256.iv)  -out decrypted_aes.txt
+
+$   wc -c msg.txt cipher_aes.bin
+
+Con AES i blocchi sono da 16 byte. In 46 byte entrano 2 blocchi pieni (32 byte) e ne avanzano 14, che formano un terzo blocco incompleto. Per completarlo servono 2 byte, quindi si aggiungono due byte 02 02. Il risultato è 3 blocchi da 16 byte, cioè 48.

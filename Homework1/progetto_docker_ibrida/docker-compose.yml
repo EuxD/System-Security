@@ -1,0 +1,25 @@
+services:
+  ca:
+    build: .
+    hostname: ca
+    volumes:
+      - ./data/ca:/work
+      - ./scripts:/scripts:ro
+      - canale:/canale
+  alice:
+    build: .
+    hostname: alice
+    volumes:
+      - ./data/alice:/work
+      - ./scripts:/scripts:ro
+      - canale:/canale
+  bob:
+    build: .
+    hostname: bob
+    volumes:
+      - ./data/bob:/work
+      - ./scripts:/scripts:ro
+      - canale:/canale
+
+volumes:
+  canale:
