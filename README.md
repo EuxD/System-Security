@@ -2,58 +2,13 @@
 
 Repository degli homework del corso di **System Security**.
 
-## Indice
+## Homework
 
-- [Homework 1 – OpenSSL](#homework-1--openssl)
-  - [Obiettivi](#obiettivi)
-  - [Struttura del repository](#struttura-del-repository)
-  - [Requisiti](#requisiti)
-  - [1. Crittografia simmetrica](#1-crittografia-simmetrica)
-  - [2. Crittografia asimmetrica](#2-crittografia-asimmetrica)
-  - [3. Certificati X.509 v3 e catena di certificati](#3-certificati-x509-v3-e-catena-di-certificati)
-  - [4. Conservazione della chiave privata](#4-conservazione-della-chiave-privata)
-  - [5. Simulazione con Docker](#5-simulazione-con-docker)
-- [Nota sulla sicurezza](#nota-sulla-sicurezza)
+| Homework | Argomento | Cartella |
+|---|---|---|
+| 1 | OpenSSL: crittografia simmetrica e asimmetrica, certificati X.509 v3, conservazione della chiave privata (PKCS#12, keystore), simulazione con Docker | [`Homework1/`](Homework1/) |
 
----
-
-## Homework 1 – OpenSSL
-
-### Obiettivi
-
-L'homework chiede di usare OpenSSL per:
-
-1. **Generare chiavi simmetriche** e usarle con diversi algoritmi simmetrici.
-2. **Generare chiavi asimmetriche** e usarle per cifrare, firmare file e firmare certificati, generando una catena di certificati.
-3. **Generare certificati** secondo lo standard **X.509 v3**.
-4. **Conservare la chiave privata** in un file PKCS#12 (`.p12`) e in un keystore gestito con `keytool`.
-
-La presentazione completa del lavoro è in [`Homework1/Presentazione_HW1.pptx`](Homework1/Presentazione_HW1.pptx).
-
-### Struttura del repository
-
-```
-.
-├── README.md
-└── Homework1/
-    ├── Presentazione_HW1.pptx
-    ├── Simmetrica/
-    │   ├── AES-CBC/                    # AES-256 in modalità CBC
-    │   └── 3DES-CBC/                   # 3DES, confronto ECB/CBC
-    │       └── 3DES_chiave_corta/      # 3DES con K2 = K3 (equivale a DES)
-    ├── Asimmetrica/
-    │   ├── Crittazione_Semplice+Firma/ # RSA: cifratura e firma
-    │   ├── Certificati/                # Root CA, CA intermedia, server
-    │   │   ├── root/
-    │   │   ├── intermediate/
-    │   │   └── server/
-    │   └── Keystore/                   # file PKCS#12 / keystore
-    └── progetto_docker_ibrida/         # simulazione Alice, Bob e CA con Docker
-        ├── Dockerfile
-        ├── docker-compose.yml
-        ├── guida_comandi_utilizzo.txt  # comandi da eseguire nei container
-        └── data/                       # file generati da CA, Alice e Bob
-```
+Ogni cartella contiene il proprio `README.md` con obiettivi, struttura e istruzioni.
 
 ## Nota sulla sicurezza
 
